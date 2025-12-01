@@ -1,26 +1,191 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --color-mus-orange: #ff6b00;
+  --color-mus-black: #27313a;
+  --color-mus-accent: #efe9e2;
+  --color-mus-dark: #1A1A1A;
+  --color-mus-light: #F8FAFC;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --shadow-card: rgba(0, 0, 0, 0.16)_0px_10px_36px_0px, rgba(0, 0, 0, 0.06)_0px_0px_0px_1px;
+  --shadow-details: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  --animate-float: moveUpDown 2s ease-in-out infinite;
+  --animate-float-slow: moveUpDown 4s ease-in-out infinite;
+  --animate-diagonal: diagonalUpDown 3s infinite alternate;
+  --animate-blink-slow: blink 2s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin: spin 20s linear infinite;
+
+  @keyframes moveUpDown {
+    0% {
+      transform: translateX(-50%) translateY(0);
+      /* Mantém a centralização horizontal */
+    }
+
+    50% {
+      transform: translateX(-50%) translateY(-20px);
+      /* Sobe 20px */
+    }
+
+    100% {
+      transform: translateX(-50%) translateY(0);
+      /* Volta para a posição inicial */
+    }
+  }
+
+  @keyframes diagonalUpDown {
+    0% {
+      transform: translate(-50%, -50%); /* centralizada */
+    }
+    100% {
+      transform: translate(calc(-50% + 20px), calc(-50% - 20px)); /* sobe para a diagonal */
+    }
+  }
+
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+      /* Visível no começo */
+    }
+
+    50% {
+      opacity: 0.2;
+      /* Invisível no meio */
+    }
+
+    100% {
+      opacity: 1;
+      /* Visível no final */
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: .5;
+    }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }
 
+@media (min-width:768px) and (max-width:1023px) {
+  .phoneContainer {
+    bottom: -680px;
+  }
+
+  .boxSteps-details {
+    height: auto;
+  }
+}
+
+.sectionStyle {
+  @apply w-full px-32 pt-40 pb-20 flex flex-col items-center overflow-hidden max-md:px-0
+}
+
+.nameSection {
+  @apply mb-6 py-2 px-4 text-center text-[1.5em] text-mus-black relative;
+}
+
+.titleSection {
+  @apply text-[3.5em] text-mus-black text-center font-bold mt-2 mb-4;
+}
+
+.paragraphSection {
+  @apply text-[1.8em] text-mus-black opacity-60 text-center leading-relaxed;
+}
+
+.nameSection::before,
+.nameSection::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 3rem;
+  height: 0.25rem;
+  background-color: #ff7a00; /* mus-orange */
+  transition: all 0.3s ease-in-out;
+}
+
+.nameSection::before {
+  left: 0;
+}
+
+.nameSection::after {
+  right: 0;
+}
+
+.nameSection.active::before,
+.nameSection.active::after {
+  width: 8rem;
+}
+
+.nameSection.active::after {
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.nameSection.active::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.boxSteps-item {
+  @apply w-[50%] py-8 px-0 flex flex-col items-center max-md:w-full
+}
+
+.boxSteps-icon {
+  @apply w-28 h-28 rounded-[50%] text-[3em] flex items-center justify-center mb-4
+}
+
+.boxSteps-details {
+  @apply w-[80%] min-w-80 h-50 mb-14 p-10 relative flex gap-4 rounded-3xl [box-shadow:rgba(50,50,93,0.25)_0px_2px_5px_-1px,rgba(0,0,0,0.3)_0px_1px_3px_-1px] transition-all duration-500 max-md:w-full
+}
+
+.details-number {
+  @apply w-18 h-18 rounded-[50%] text-[1.8em] absolute -top-[2.2rem] left-6 z-10
+}
+
+.methodsItem {
+  @apply w-[calc((100%/3)-1rem)] min-w-20 h-36 rounded-lg flex items-center justify-center
+  [box-shadow:rgba(50,50,93,0.25)_0px_2px_5px_-1px,rgba(0,0,0,0.3)_0px_1px_3px_-1px]
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-center-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
 }

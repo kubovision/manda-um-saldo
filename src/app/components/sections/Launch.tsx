@@ -1,202 +1,125 @@
+// components/LaunchOpportunitySection.tsx
 'use client';
-import Sections from '@/app/components/utils/Sections';
-import { RiVipCrownFill } from "react-icons/ri";
-import { VscLightbulbSparkle } from "react-icons/vsc";
-import { LuScanEye } from "react-icons/lu";
 
-export default function Launch() {
+import React from 'react';
+// Ícones do react-icons (usando Bs e Fa como exemplos)
+import { FaAward, FaLightbulb, FaEye } from 'react-icons/fa'; 
+import { BsCheckCircleFill } from 'react-icons/bs';
+
+// --- Definição dos Dados dos Benefícios ---
+const benefitsData = [
+    {
+        icon: FaAward, // Ícone de Prêmio/Destaque
+        title: 'Criador Fundador',
+        description: 'Destaque especial e selo exclusivo na plataforma durante os primeiros meses, garantindo visibilidade máxima no lançamento.',
+        color: 'text-mus-orange',
+    },
+    {
+        icon: FaLightbulb, // Ícone de Ideia/Influência
+        title: 'Influencie o Futuro',
+        description: 'Acesso prioritário a novas funcionalidades e um canal direto de feedback para moldar o desenvolvimento da plataforma.',
+        color: 'text-indigo-500',
+    },
+    {
+        icon: FaEye, // Ícone de Olho/Visibilidade
+        title: 'Veja & Seja Visto',
+        description: 'Estabeleça sua presença cedo. A plataforma fará uma promoção extra do seu perfil para atrair os primeiros apoiadores.',
+        color: 'text-green-500',
+    },
+];
+
+// --- Definição dos Dados do Potencial de Ganhos ---
+const potentialData = [
+    {
+        title: 'Para Criadores de Conteúdo',
+        scenario: 'Se 100 fãs apoiarem com 500 kz/mês:',
+        value: '50.000,00 kz/mês',
+        note: 'extra para equipamento ou mais tempo para conteúdo.',
+        color: 'border-mus-orange/50 bg-mus-orange/5',
+    },
+    {
+        title: 'Para Profissionais Informais',
+        scenario: 'Se 50 clientes gratificarem seus serviços:',
+        value: '25.000,00 kz/mês',
+        note: 'gratificação pelo bom trabalho realizado.',
+        color: 'border-indigo-500/50 bg-indigo-500/5',
+    },
+];
+
+export default function LaunchOpportunitySection() {
     return (
-        <section id='lancamento' className='
-        sectionStyle
-        '>
-            <Sections
-                name='Oportunidade de Lançamento'
-                title='Seja um dos primeiros criadores'
-            >
-                Estamos a construir a primeira comunidade angolana de apoio directo a criadores.
-                Junte-se agora e ganhe visibilidade especial.
-            </Sections>
-            <div className='launchContainer
-            w-full
-            flex
-            items-center
-            justify-around
-            flex-wrap
-            gap-4
-            mt-20
-            '>
-                <div className="lauchCard
-                border-b border-[rgba(50,50,93,0.25)]
-                pb-15
-                w-[calc((100%/3)-1rem)]
-                min-w-140
-                h-60
-                ">
-                    <RiVipCrownFill className='
-                    text-[3.5em]
-                    text-mus-orange
-                    mb-4
-                    '/>
-                    <h3 className='
-                    text-[1.8em]
-                    text-mus-black
-                    font-bold
-                    '>Criador Fundador</h3>
-                    <p className='
-                    text-[1.5em]
-                    text-mus-black
-                    opacity-60
-                    '>Destaque especial na plataforma durante os primeiros meses</p>
+        <section id="oportunidade-lancamento" className="w-full py-20 md:py-32 bg-mus-accent">
+            <div className="container mx-auto px-4 max-w-7xl">
+                
+                {/* Cabeçalho */}
+                <header className="text-center mb-16">
+                    <span className="text-lg font-semibold text-mus-orange uppercase tracking-widest flex items-center justify-center gap-2 mb-2">
+                        <FaLightbulb size={20} /> Oportunidade de Lançamento
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                        Seja um dos primeiros criadores
+                    </h2>
+                    <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                        Estamos a construir a primeira comunidade angolana de apoio direto a criadores. Junte-se agora e ganhe visibilidade especial.
+                    </p>
+                </header>
+
+                {/* 1. SEÇÃO DE BENEFÍCIOS (Grid 3 Colunas) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
+                    {benefitsData.map((item, index) => {
+                        const IconComponent = item.icon; // Componente de ícone dinâmico
+                        return (
+                            <div
+                                key={index}
+                                className="p-8 border border-gray-100 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 bg-white"
+                            >
+                                {/* O ÍCONE É RENDERIZADO AQUI, USANDO size e className */}
+                                <IconComponent size={36} className={`${item.color} mb-4`} />
+                                <h3 className="text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                                <p className="text-gray-600">{item.description}</p>
+                            </div>
+                        );
+                    })}
                 </div>
-                <div className="lauchCard
-                border-b border-[rgba(50,50,93,0.25)]
-                pb-15
-                w-[calc((100%/3)-1rem)]
-                min-w-140
-                h-60
-                ">
-                    <VscLightbulbSparkle className='
-                    text-[3.5em]
-                    text-mus-orange
-                    mb-4
-                    '/>
-                    <h3 className='
-                    text-[1.8em]
-                    text-mus-black
-                    font-bold
-                    '>Influencie o Futuro</h3>
-                    <p className='
-                    text-[1.5em]
-                    text-mus-black
-                    opacity-60
-                    '>Ajude a moldar a plataforma com seu feedback</p>
-                </div>
-                <div className="lauchCard
-                border-b border-[rgba(50,50,93,0.25)]
-                pb-15
-                w-[calc((100%/3)-1rem)]
-                min-w-140
-                h-60
-                ">
-                    <LuScanEye className='
-                    text-[3.5em]
-                    text-mus-orange
-                    mb-4
-                    '/>
-                    <h3 className='
-                    text-[1.8em]
-                    text-mus-black
-                    font-bold
-                    '>Veja Visto</h3>
-                    <p className='
-                    text-[1.5em]
-                    text-mus-black
-                    opacity-60
-                    '>Estabeleça sua presença e deixe todos saberem o que você faz</p>
-                </div>
-            </div>
-            <div className='potencialContainer
-            w-full
-            py-12
-            flex
-            flex-col
-            items-center
-            '>
-                <h3 className='
-                    text-[2.5em] 
-                    text-mus-black 
-                    font-bold
-                    '>Veja o potencial:</h3>
-                <div className='potencialBox
-                w-full
-                flex
-                items-center
-                justify-center
-                flex-wrap
-                gap-4
-                rounded-3xl
-                [box-shadow:rgba(50,50,93,0.25)_0px_2px_5px_-1px,rgba(0,0,0,0.3)_0px_1px_3px_-1px]
-                p-8
-                '>
-                    <div className='potencialItem
-                    w-[49%]
-                    min-w-140
-                    flex
-                    flex-col
-                    items-center
-                    '>
-                        <h4 className='
-                        text-[1.8em]
-                        text-mus-orange
-                        font-bold
-                        '>Para Criadores de Conteúdo</h4>
-                        <p className='
-                        text-[1.5em]
-                        text-mus-black
-                        opacity-60
-                        mb-8
-                        '>Se 100 fãs apoiarem com 500 kz/mês:</p>
-                        <div className='potencialValue
-                        w-full
-                        flex
-                        flex-col
-                        items-center
-                        '>
-                            <span className='
-                            text-[1.8em]
-                            text-mus-orange
-                            font-bold
-                            '>50.000,00 kz/mês</span>
-                            <p className='
-                            text-[1.5em]
-                            text-mus-black
-                            opacity-60
-                            '>extra para equipamento ou mais tempo para conteúdo.</p>
-                        </div>
-                    </div>
-                    <div className='potencialItem
-                    w-[49%]
-                    min-w-140
-                    flex
-                    flex-col
-                    items-center
-                    '>
-                        <h4 className='
-                        text-[1.8em]
-                        text-mus-orange
-                        font-bold
-                        '>Para Profissionais Informais</h4>
-                        <p className='
-                        text-[1.5em]
-                        text-mus-black
-                        opacity-60
-                        mb-8
-                        '>Se 50 clientes gratificarem seu serviços:</p>
-                        <div className='potencialValue
-                        w-full
-                        flex
-                        flex-col
-                        items-center
-                        '>
-                            <span className='
-                            text-[1.8em]
-                            text-mus-orange
-                            font-bold
-                            '>25.000,00 kz/mês</span>
-                            <p className='
-                            text-[1.5em]
-                            text-mus-black
-                            opacity-60
-                            '>gratificação pelo bom trabalho.</p>
-                        </div>
+
+                {/* 2. SEÇÃO DE POTENCIAL DE GANHOS */}
+                <div className="text-center mb-16">
+                    <h3 className="text-3xl font-bold text-gray-800 mb-8">Veja o potencial:</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {potentialData.map((item, index) => (
+                            <div
+                                key={index}
+                                className={`p-8 border-2 rounded-2xl ${item.color} text-center shadow-lg`}
+                            >
+                                <h4 className="text-2xl font-extrabold text-gray-900 mb-4">{item.title}</h4>
+                                <p className="text-lg text-gray-700 mb-2">{item.scenario}</p>
+                                
+                                <p className="text-4xl font-black text-mus-orange my-4 leading-none">
+                                    {item.value}
+                                </p>
+                                
+                                <p className="text-sm text-gray-600 mt-2">{item.note}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <p className='
-                mt-8
-                text-[1.8em]
-                text-mus-black
-                '>{`A cultura de "mandar um saldo" já existe. Estamos só a torná-la profissional.`}</p>
+
+                {/* 3. CTA FINAL DE IMPACTO */}
+                <div className="bg-gray-900 p-12 md:p-16 rounded-3xl text-center text-white shadow-2xl">
+                    <BsCheckCircleFill size={48} className="text-mus-orange mx-auto mb-4" />
+                    <h3 className="text-3xl md:text-4xl font-extrabold mb-4">
+                        A cultura de mandar um saldo já existe.
+                    </h3>
+                    <p className="text-xl opacity-80 mb-8 max-w-3xl mx-auto">
+                        Estamos a torná-la profissional. Seja pioneiro e comece a monetizar o seu talento.
+                    </p>
+                    <button className="bg-mus-orange text-white text-xl font-bold px-10 py-4 rounded-full hover:bg-mus-orange/90 transition duration-300 shadow-lg shadow-mus-orange/50">
+                        Quero ser um Criador Fundador
+                    </button>
+                </div>
+
             </div>
         </section>
-    )
+    );
 }

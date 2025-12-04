@@ -1,12 +1,12 @@
 import Header from './components/ui/Header';
 import Hero from './components/sections/Hero';
 import HowWorks from './components/sections/HowWorks';
+import { NavigationItem } from '@/types';
 import Search from './components/sections/Search';
 import Methods from './components/sections/Methods';
-import Launch from './components/sections/Launch';
+import LaunchOpportunitySection from './components/sections/Launch';
 import FinalCTA from './components/sections/FinalCTA';
 import Footer from './components/ui/Footer';
-import { NavigationItem } from '@/types';
 
 const navigation: NavigationItem[] = [
   { name: 'Como Funciona?', href: '#como-funciona' },
@@ -21,27 +21,24 @@ export default function Home() {
       {/* Header */}
       <Header navigation={navigation} />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <Hero />
 
-      {/* How Works Section */}
+      {/* How Works */}
       <HowWorks />
 
-      {/* Search Section */}
+      {/* search */}
       <Search />
-
-      {/* Methods Section */}
+      {/* methods */}
       <Methods />
 
-      {/* Launch Section */}
-      <Launch />
+      {/* Launch Opportunity */}
+      <LaunchOpportunitySection />
 
-      {/* Final CTA Section */}
       <FinalCTA />
 
-      {/* Footer */}
       <Footer />
-
+      
     </main>
   );
 }

@@ -1,5 +1,5 @@
 // components/CardItem.tsx
-import { CardItemProps } from '@/types';
+import { CardItemProps } from '@/src/types';
 
 // Define as props que este componente receberá
 
@@ -9,7 +9,7 @@ export default function CardItem({ card, rotateCards, index }: CardItemProps) {
         <div
             key={card.id}
             // Classes de estilo para a transição e layout
-            className={`absolute w-[90%] h-94 ${card.bgColor} rounded-xl shadow-card p-12 flex justify-center
+            className={`absolute w-[90%] h-100 lg:h-120 ${card.bgColor} rounded-4xl shadow-card p-12
             transition-all duration-300 ease-in-out overflow-hidden`}
             style={{
                 top: card.top,

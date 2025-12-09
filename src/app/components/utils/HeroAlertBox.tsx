@@ -6,13 +6,11 @@ const alertBoxTextClass = 'pl-4 border-l border-black/16'
 
 export default function AlertBox() {
     return (
-        <div className="
-        w-full px-8 py-12 flex items-center justify-between
+        <div className="w-full px-8 py-12 flex items-center justify-between
         ">
             <div className={`alertBox
                 ${alertBoxClass}
-                bottom-[350px]
-                -left-[30%]
+                bottom-[350px] -left-[30%]
                 max-md:-left-[30px]
                 `}>
                 <div className={`alertBoxIcon
@@ -29,8 +27,7 @@ export default function AlertBox() {
             </div>
             <div className={`alertBox
                 ${alertBoxClass}
-                top-24
-                -right-[30%]
+                top-24 -right-[30%]
                 max-md:-right-12
                 `}>
                 <div className={`alertBoxIcon
@@ -47,8 +44,7 @@ export default function AlertBox() {
             </div>
             <div className={`alertBox
                 ${alertBoxClass}
-                top-64
-                -right-[30%]
+                top-64 -right-[30%]
                 max-md:-right-12
                 `}>
                 <div className={`alertBoxIcon

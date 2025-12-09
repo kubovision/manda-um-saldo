@@ -1,78 +1,66 @@
-'use client';
-
-import Link from "next/link";
-import Image from "next/image";
+'use client'
+import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react";
-import { NavigationItem } from "@/types";
 import { CgMenuRight } from "react-icons/cg";
 import { RiCloseLargeLine } from "react-icons/ri";
+import { NavigationItem } from '@/src/types/index';
 
 interface HeaderProps {
-    navigation: NavigationItem[];
+    navegation: NavigationItem[];
 }
 
-export default function Header({ navigation }: HeaderProps) {
+export default function Header({ navegation }: HeaderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const handler = () => setIsScrolled(window.scrollY > 100);
         handler();
-        window.addEventListener("scroll", handler);
-        return () => window.removeEventListener("scroll", handler);
+        window.addEventListener('scroll', handler);
+        return () => window.removeEventListener('scroll', handler);
     }, []);
 
     return (
-        <header
-            className={`
-        fixed inset-x-0 top-0 z-50 flex justify-center items-center
-        transition-all duration-500
-        h-24
-        ${isScrolled ? "lg:px-0 lg:h-24" : "lg:px-40 lg:h-34"}
-        `}
-        >
-            <div className={`
-            w-full h-24 px-4 flex items-center justify-between
-            bg-mus-accent rounded-2xl shadow-[0_5px_15px_rgba(0,0,0,0.35)]
-            transition-all duration-500
-            ${isScrolled ? "lg:px-40" : "lg:px-4"}
-            `}
-            >
-                {/* Left — Logo + Desktop Nav */}
+        <header className={`${isScrolled ? "lg:px-0 lg:h-24" : "lg:px-40 lg:h-34"}
+        w-full fixed inset-x-0 top-0 z-50 
+        flex-center transition-all duration-500`}>
+            <div className={`${isScrolled ? "lg:px-40 lg:rounded-none" : "lg:px-4 lg:rounded-4xl"}
+            w-full h-24 px-4 flex items-center justify-between 
+            bg-mus-accent shadow-mus-header`}>
+                {/* logo + menu */}
                 <div className="flex items-center gap-4">
-                    {/* Small Logo */}
+                    {/* small logo */}
                     <Link href="/" className="lg:hidden">
                         <Image
                             src="/images/logo-small_transp.webp"
                             width={35}
                             height={120}
-                            alt="Manda Um Saldo"
+                            alt="Manda Um Saldo - Small Logo"
                             priority
                         />
                     </Link>
-
-                    {/* Large Logo */}
+                    {/* large logo */}
                     <Link href="/" className="hidden lg:block">
                         <Image
-                            src="/images/logo03_small_transp.webp"
-                            width={180}
+                            src={'/images/logo03_small_transp.webp'}
+                            width={190}
                             height={120}
-                            alt="Manda Um Saldo"
+                            alt="Manda Um Saldo - Small Logo"
                             priority
                         />
                     </Link>
-
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-4">
-                        {navigation.map((item) => (
+                    <nav className="hidden items-center lg:flex">
+                        {navegation.map((item) => (
                             <Link
-                                key={item.name}
-                                href={item.href}
+                                key={item.name} href={item.href}
                                 className="
-                  px-4 py-2 text-[1.5em] font-semibold tracking-wide
-                  text-mus-black opacity-80 hover:opacity-100
-                  transition-colors
-                "
+                                px-4 py-2
+                                text-2xl font-thin text-black/80 lg:hover:text-mus-orange
+                                tracking-wide whitespace-nowrap
+                                transition-all duration-200
+                                "
                             >
                                 {item.name}
                             </Link>
@@ -80,97 +68,84 @@ export default function Header({ navigation }: HeaderProps) {
                     </nav>
                 </div>
 
-                {/* Right — Login / Signup / Mobile Menu */}
+                {/* Mobile Navigation + login/Signup */}
                 <div className="flex items-center gap-4">
-                    {/* Desktop Login */}
+                    {/* login/signup */}
                     <Link
-                        href="/login"
-                        className="hidden lg:flex py-3 px-6 text-[1.5em] font-semibold text-mus-black"
+                        href="/entrar"
+                        className="hidden px-6 py-4 text-2xl text-mus-black tracking-wide 
+                        font-normal lg:block"
                     >
                         Entrar
                     </Link>
-
-                    {/* Desktop Signup */}
                     <Link
-                        href="/signup"
-                        className="
-                        px-6 py-4 rounded-2xl bg-mus-orange text-white
-                        font-semibold tracking-wide text-[1.5em]
-                        hover:bg-orange-600 transition-colors
-                        "
+                        href="/criar-pagina"
+                        className="px-6 py-4 text-2xl text-white tracking-wide 
+                        bg-mus-orange rounded-4xl"
                     >
                         Criar Página
                     </Link>
-
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Navigation */}
                     <button
                         aria-label="Abrir Menu"
                         onClick={() => setIsOpen(true)}
-                        className="lg:hidden text-[3rem] text-mus-black w-14 h-14 flex items-center justify-center"
-                    >
+                        className="lg:hidden text-5xl text-mus-black 
+                    w-14 h-14 flex items-center justify-center">
                         <CgMenuRight />
                     </button>
-                </div>
-
-                {/* Mobile Sidebar */}
-                <div
-                    className={`
-            fixed top-0 right-0 w-80 h-screen bg-mus-accent shadow-xl
-            flex flex-col px-6 py-6
-            transition-transform duration-300
-            lg:hidden
-            ${isOpen ? "translate-x-0" : "translate-x-full"}
-          `}
-                >
-                    {/* Close Button */}
-                    <button
-                        aria-label="Fechar Menu"
-                        onClick={() => setIsOpen(false)}
-                        className="self-end text-[3rem] text-mus-black"
+                    {/* Mobile Sidebar */}
+                    <div className={`${isOpen ? "translate-x-0" : "translate-x-full"}
+                        fixed top-0 right-0 w-110 h-screen bg-mus-accent
+                        shadow-xl px-8 py-6 transition-transform duration-300
+                        flex flex-col lg:hidden`}
                     >
-                        <RiCloseLargeLine />
-                    </button>
-
-                    {/* Mobile Links */}
-                    <nav className="flex flex-col mt-10 gap-6">
-                        {navigation.map((item) => (
+                        {/* Close Button */}
+                        <button
+                            type="button"
+                            aria-label="Fechar Menu"
+                            onClick={() => setIsOpen(false)}
+                            className="self-end text-5xl text-mus-black
+                        ">
+                            <RiCloseLargeLine />
+                        </button>
+                        <nav className="flex flex-col mt-10 gap-6">
+                            {navegation.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="
+                                    text-3xl text-mus-black font-medium
+                                    tracking-wide text-right
+                                    "
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </nav>
+                        {/* Mobile Login/Signup */}
+                        <div className="mt-auto pb-40 flex flex-col gap-4 text-center">
                             <Link
-                                key={item.name}
-                                href={item.href}
+                                href="/entrar"
+                                onClick={() => setIsOpen(false)}
+                                className="btn min-w-full text-mus-black font-semibold"
+                            >
+                                Entrar
+                            </Link>
+
+                            <Link
+                                href="/criar-pagina"
                                 onClick={() => setIsOpen(false)}
                                 className="
-                  text-[1.6em] text-mus-black font-semibold
-                  tracking-wide text-right pb-2
-                "
+                                btn min-w-full text-white font-semibold
+                                bg-mus-orange"
                             >
-                                {item.name}
+                                Criar Página
                             </Link>
-                        ))}
-                    </nav>
-
-                    {/* Mobile Buttons */}
-                    <div className="mt-auto pb-20 flex flex-col gap-4 text-center">
-                        <Link
-                            href="/login"
-                            className="btn min-w-full py-3 text-mus-black font-semibold"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Entrar
-                        </Link>
-
-                        <Link
-                            href="/signup"
-                            className="
-                btn min-w-full py-3 text-white font-semibold
-                bg-mus-orange rounded-xl
-              "
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Criar Página
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
-    );
+    )
 }

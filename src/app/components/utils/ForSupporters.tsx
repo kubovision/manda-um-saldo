@@ -2,8 +2,8 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Card } from '@/types';
-import CardItem from './CardItem'; // <-- Novo Importe
+import { Card } from '@/src/types';
+import CardItem from './HowWorkCards';
 import { GiPayMoney } from "react-icons/gi";
 import { CiCoinInsert } from "react-icons/ci";
 import { PiNumberOneBold, PiNumberTwoBold, PiNumberThreeBold } from "react-icons/pi";
@@ -13,9 +13,9 @@ export default function ForSupporters() {
         // Agora, o 'content' aqui define APENAS o conteúdo
         {
             id: 1, top: '50%', zIndex: 3, bgColor: 'bg-white', content: (
-                <div className="w-full">
+                <div className="w-full h-full flex flex-col justify-center">
                     <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
-                    <p className="text-[1.6em] text-mus-black font-medium my-8
+                    <p className="text-[2em] text-mus-black font-medium my-8
                 ">Busca por nome ou usa link directo partilhado pelo criador.</p>
                     <div className="flex items-center">
                         <span className="bg-mus-orange w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-white
@@ -30,10 +30,12 @@ export default function ForSupporters() {
         },
         {
             id: 2, top: '45%', zIndex: 2, bgColor: 'bg-mus-black', content: (
-                <div className="w-full">
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <p className="text-[1.6em] text-white font-medium my-8
+                <div className="w-full h-full flex flex-col justify-center">
+                    <div className='w-full flex'>
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                    </div>
+                    <p className="text-[2em] text-white font-medium my-8
                 ">500, 1000, 2000 Kz ou qualquer valor personalizado.</p>
                     <div className="flex items-center">
                         <span className="bg-mus-orange w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-white
@@ -48,11 +50,13 @@ export default function ForSupporters() {
         },
         {
             id: 3, top: '40%', zIndex: 1, bgColor: 'bg-mus-accent', content: (
-                <div className="w-full">
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <p className="text-[1.6em] text-mus-black font-medium my-8
+                <div className="w-full h-full flex flex-col justify-center">
+                    <div className='w-full flex'>
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                    </div>
+                    <p className="text-[2em] text-mus-black font-medium my-8
                 ">Paga com Unitel Money, Africell Money ou Multicaixa em segundos.</p>
                     <div className="flex items-center">
                         <span className="bg-mus-orange w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-white
@@ -122,7 +126,7 @@ export default function ForSupporters() {
                 Para Apoiadores
             </h3>
             <div className="relative h-100 w-full perspective-1000 flex justify-center
-            lg:w-150
+            lg:w-220 lg:h-160
             ">
                 {cards.map((card, index) => (
                     // CHAMADA DO NOVO COMPONENTE:

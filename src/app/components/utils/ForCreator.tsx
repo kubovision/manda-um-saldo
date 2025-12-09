@@ -2,21 +2,20 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Card } from '@/types';
-import CardItem from './CardItem'; // <-- Novo Importe
+import { Card } from '@/src/types';
+import CardItem from './HowWorkCards';
 import { BsTools } from "react-icons/bs";
 import { CiCoinInsert } from "react-icons/ci";
 import { PiNumberOneBold, PiNumberTwoBold, PiNumberThreeBold } from "react-icons/pi";
 
 export default function ForCreator() {
     const [cards, setCards] = useState<Card[]>([
-        // Agora, o 'content' aqui define APENAS o conteúdo
         {
             id: 1, top: '50%', zIndex: 3, bgColor: 'bg-white', content: (
-                <div className="w-full">
+                <div className="w-full h-full flex flex-col justify-center">
                     <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
-                    <p className="text-[1.6em] text-mus-black font-medium my-8
-                ">Registo em 2 minutos, perfil personalizado com tua foto e bio.</p>
+                    <p className="text-[2em] text-mus-black font-medium my-8
+                    ">Registo em 2 minutos, perfil personalizado com tua foto e bio.</p>
                     <div className="flex items-center">
                         <span className="bg-mus-orange w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-white
                         ">
@@ -30,11 +29,13 @@ export default function ForCreator() {
         },
         {
             id: 2, top: '45%', zIndex: 2, bgColor: 'bg-mus-green', content: (
-                <div className="w-full">
-                    <CiCoinInsert className="text-[#112A46] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#112A46] text-[3.6em] inline" />
-                    <p className="text-[1.6em] text-black/80 font-medium my-8
-                ">Coloca na bio do TikTok, Instagram, YouTube e outras redes.</p>
+                <div className="w-full h-full flex flex-col justify-center">
+                    <div className='w-full flex'>
+                        <CiCoinInsert className="text-[#112A46] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#112A46] text-[3.6em]" />
+                    </div>
+                    <p className="text-[2em] text-black/80 font-medium my-8
+                    ">Coloca na bio do TikTok, Instagram, YouTube e outras redes.</p>
                     <div className="flex items-center">
                         <span className="bg-[#112A46] w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-mus-green
                             ">
@@ -48,12 +49,14 @@ export default function ForCreator() {
         },
         {
             id: 3, top: '40%', zIndex: 1, bgColor: 'bg-mus-accent', content: (
-                <div className="w-full">
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <CiCoinInsert className="text-[#D3AF37] text-[3.6em] inline" />
-                    <p className="text-[1.6em] text-mus-black font-medium my-8
-                ">Directo para tua conta, sem intermediários a reter teu dinheiro.</p>
+                <div className="w-full h-full flex flex-col justify-center">
+                    <div className='w-full flex'>
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                        <CiCoinInsert className="text-[#D3AF37] text-[3.6em]" />
+                    </div>
+                    <p className="text-[2em] text-mus-black font-medium my-8
+                    ">Directo para tua conta, sem intermediários a reter teu dinheiro.</p>
                     <div className="flex items-center">
                         <span className="bg-mus-orange w-12 h-12 rounded-[50%] flex-center text-[1.5em] text-white
                             ">
@@ -65,9 +68,6 @@ export default function ForCreator() {
             )
         },
     ]);
-
-    // ... (Lógica de rotação rotateCards e useEffect permanece inalterada) ...
-    // [Seu código para isAnimating, rotateCards e useEffect aqui]
 
     const isAnimating = useRef(false);
 
@@ -124,7 +124,7 @@ export default function ForCreator() {
                 Para Criadores
             </h3>
             <div className="relative h-100 w-full perspective-1000 flex justify-center
-            lg:w-150
+            lg:w-220 lg:h-160
             ">
                 {cards.map((card, index) => (
                     // CHAMADA DO NOVO COMPONENTE:

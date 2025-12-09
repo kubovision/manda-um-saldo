@@ -1,26 +1,23 @@
-'use client';
-import Link from "next/link";
-import Image from "next/image";
+'use client'
+import Link from "next/link"
+import Image from "next/image"
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { FaBolt } from "react-icons/fa6";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
 import { ImCoinDollar } from "react-icons/im";
-import HeroCard from "./../utils/HeroCard";
-import AlertBox from "./../utils/AlertBox";
-
+import HeroCard from "../utils/HeroCards";
+import HeroAlertBox from "../utils/HeroAlertBox";
 
 export default function Hero() {
     return (
-        <section className="
-        w-full h-340 px-4 relative bg-[url(/images/Hero/bgdHero-01.webp)] bg-center
-        bg-cover bg-no-repeat overflow-hidden lg:h-screen tablet-only:height
-        heroSection
+        <section className="w-full h-320 relative overflow-hidden
+        bg-[url(/images/Hero/bgdHero-01.webp)] bg-center bg-cover bg-no-repeat
+        hero-section lg:h-screen tablet-only:height
         ">
-            <div className="
-            w-full mt-45
-            ">
+            <div className="w-full mt-45">
                 <h1 className="
-                text-center text-[3.8em] font-bold text-mus-black
+                text-center text-[4em] font-bold text-mus-black
+                lg:text-[7em] lg:leading-tight
                 ">
                     Recebe apoio dos teus fãs <br />
                     <span className='
@@ -28,126 +25,78 @@ export default function Hero() {
                         como nunca!
                     </span>
                 </h1>
-                <div className="
-                w-full mt-8 flex items-center justify-center gap-6 
-                ">
-                    <Link href="/login" className="
-                    btn
-                    bg-mus-orange
-                    text-white
+                <div className="w-full mt-8 flex-center gap-6">
+                    <Link href="/criar-pagina" className="btn bg-mus-orange text-white
+                    lg:hover:translate-y-0.5
                     ">
                         Criar Minha Página
                     </Link>
-                    <Link href="/login" className="
-                    btn
-                    desktop-only:hover
+                    <Link href="/" className="btn
+                    lg:hover:bg-mus-orange lg:hover:text-white lg:hover:translate-y-0.5
                     ">
                         Mandar um Saldo
                     </Link>
                 </div>
-                <p className="
-                mt-6 text-[1.3em] text-mus-black opacity-60 text-center
-                ">
+                <p className="mt-6 text-xl text-center text-mus-black opacity-60">
                     Sem taxas, sem compilcações e leva apenas alguns minutos.
                 </p>
             </div>
-            <div className="
-            w-full mt-16 flex justify-center
-            ">
-
-                <div className="phoneContainer
-                w-lg h-230 bg-white rounded-[4rem] border-12 border-black relative
-                animate-float-slow [box-shadow:rgba(0,0,0,0.56)_0px_22px_70px_4px]
-                phoneButton
+            <div className="w-full mt-10 flex justify-center">
+                <div className="phoneContainer w-lg h-230 bg-white rounded-[4rem] border-12 border-black relative
+                animate-move-up-down shadow-phone-hero phoneButton
                 ">
                     <span className="phoneComponent01"></span>
                     <span className="phoneComponent02"></span>
-                    <div className="
-                    w-full h-32 flex items-end justify-between px-4 pb-6
+                    <div className="w-full h-32 flex items-end justify-between px-4 pb-6
                     ">
                         <Image
                             src="/images/logo-small_transp.webp"
-                            alt="Logo Manda Um Saldo"
                             width={35}
                             height={120}
-                            priority // melhora LCP
+                            alt="Manda Um Saldo - Phone"
+                            priority
                         />
                         <div className="flex items-center gap-4">
-                            <span className="py-3 px-6 bg-mus-orange rounded-2xl
-                            text-white text-[1.2em]
+                            <span className="px-6 py-3 bg-mus-orange rounded-4xl text-white text-xl
                             ">Criar Página</span>
                             <HiOutlineMenuAlt1 className='text-[3rem] text-mus-black-500' />
                         </div>
                     </div>
                     <div className="w-full h-80 p-8 bg-mus-orange flex flex-col items-center
-                    
                     ">
-                        <span className="w-40 h-40 rounded-[50%] overflow-hidden mb-2">
+                        <span className="w-40 h-40 rounded-full overflow-hidden mb-4">
                             <Image
                                 src="/images/hero/profileHero.webp"
-                                alt="imagem de perfil"
                                 width={200}
                                 height={120}
-                                priority // melhora LCP
+                                alt="Manda Um Saldo - Phone"
+                                priority
+                                className="phoneImage"
                             />
                         </span>
-                        <span className="mb-1
-                        text-[2em]
-                        text-white
-                        font-bold
-                        ">
-                            Carlos Alberto</span>
-                        <span className="text-[1.4em]
-                        text-white
-                        opacity-70
-                        ">
-                            Criador de Conteúdo</span>
+                        <span className="mb-2 text-3xl font-bold text-white
+                        ">Carlos Alberto</span>
+                        <span className="text-2xl text-white opacity-70
+                        ">Criador de Conteúdo</span>
                     </div>
                     <HeroCard />
-                    <AlertBox />
-                    <div className='coin-icon
-                w-12
-                h-12
-                bg-mus-green
-                rounded-[50%]
-                absolute
-                flex-center
-                text-mus-black
-                text-[2em]
-                animate-blink-slow
-                top-20
-                -left-[184px]
-                '>
+                    <HeroAlertBox />
+                    <div className='coin-icon w-12 h-12 flex-center rounded-full
+                    bg-mus-green text-mus-black text-[2em] animate-blink-slow
+                    absolute top-20 -left-[184px]
+                    '>
                         <ImCoinDollar />
                     </div>
-                    <div className='heart-icon
-                w-12
-                h-12
-                bg-mus-green
-                rounded-[50%]
-                absolute
-                flex-center
-                text-mus-black
-                text-[2em]
-                animate-blink-slow
-                bottom-[340px]
-                -right-[184px]
-                '>
+                    <div className='heart-icon w-12 h-12 flex-center rounded-full
+                    bg-mus-green text-mus-black text-[2em] animate-blink-slow
+                    absolute bottom-[340px] -right-[184px] 
+                    '>
                         <BsFillBalloonHeartFill />
                     </div>
-                    <div className='bolt-icon
-                w-12
-                h-12
-                bg-mus-orange
-                rounded-[50%]
-                absolute
-                flex-center
-                text-white
-                text-[1.3em]
-                animate-float
-                -top-[22px]
-                -right-[84px]
-                '>
+                    <div className='bolt-icon w-12 h-12 flex-center rounded-full
+                    bg-mus-orange text-white text-[1.3em] animate-move-up-down-fast
+                    absolute -top-[22px] -right-[84px]
+                    '>
                         <FaBolt />
                     </div>
                 </div>

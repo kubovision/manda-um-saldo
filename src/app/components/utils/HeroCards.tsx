@@ -6,22 +6,17 @@ const infoIconClass = 'w-14 h-14 rounded-[50%] bg-mus-orange text-white text-[1.
 
 export default function HeroCard() {
     return (
-        <div className="
-        w-full px-8 py-12 flex items-center justify-between
+        <div className="w-full px-8 py-12 flex items-center justify-between
         ">
             <div className={infoBoxClass}>
                 <div className={infoIconClass}>
                     <FaHandHoldingHeart />
                 </div>
                 <div>
-                    <p className='
-                            text-[1.3em]
-                            font-700
-                            '>520</p>
-                    <p className='
-                            text-[1.3em]
-                            opacity-60
-                            '>Apoios</p>
+                    <p className='text-[1.3em] font-700
+                    '>520</p>
+                    <p className='text-[1.3em] opacity-60
+                    '>Apoios</p>
                 </div>
             </div>
             <div className={infoBoxClass}>
@@ -29,14 +24,11 @@ export default function HeroCard() {
                     <GiReceiveMoney />
                 </div>
                 <div>
+                    <p className='text-[1.3em] font-700
+                    '>250k</p>
                     <p className='
-                            text-[1.3em]
-                            font-700
-                            '>250k</p>
-                    <p className='
-                            text-[1.3em]
-                            opacity-60
-                            '>Recebido</p>
+                    text-[1.3em] opacity-60
+                    '>Recebido</p>
                 </div>
             </div>
         </div>

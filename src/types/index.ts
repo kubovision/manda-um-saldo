@@ -1,42 +1,59 @@
-import React from "react";
+import { ReactNode } from 'react';
+// for header
 export interface NavigationItem {
   name: string;
   href: string;
 }
 
-export interface HeaderProps {
-  navigation: NavigationItem[];
+export interface NavigationProps {
+  items: NavigationItem[];
 }
 
-export interface ButtonProps {
-  href: string
-  className?: string
-  children: React.ReactNode
-}
-
-export interface SectionProps {
-  name: string
-  title: string
-  children: React.ReactNode
-  className?: string
-}
-
+// for how it works section
 export interface Card {
-    id: number;
-    top: string;
-    zIndex: number;
-    content: React.ReactNode; // Conteúdo a ser exibido
-    bgColor: string;
+  id: number;
+  top: string;
+  zIndex: number;
+  content: React.ReactNode; // Conteúdo a ser exibido
+  bgColor: string;
 }
 
 export interface CardItemProps {
-    card: {
-        id: number;
-        top: string;
-        zIndex: number;
-        bgColor: string;
-        content: React.ReactNode;
-    };
-    rotateCards: () => void;
-    index: number;
+  card: {
+    id: number;
+    top: string;
+    zIndex: number;
+    bgColor: string;
+    content: React.ReactNode;
+  };
+  rotateCards: () => void;
+  index: number;
+}
+
+// for methods section
+export interface PaymentMethod {
+  id: number;
+  name: string;
+  description: string;
+  icon: string | ReactNode;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+  steps: string[];
+  transactionTime: string;
+  minAmount: number;
+  popularity: number;
+  isAvailable: boolean;
+}
+
+export interface MethodDetailsProps {
+  method: PaymentMethod;
+  isAnimating: boolean;
+}
+
+export interface MethodCardProps {
+  method: PaymentMethod;
+  isActive: boolean;
+  isAnimating: boolean;
+  onClick: () => void;
 }

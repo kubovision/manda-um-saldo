@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
+  --background: #f2f2f2;
   --foreground: #171717;
 }
 
@@ -10,46 +10,18 @@
   --color-mus-black: #27313a;
   --color-mus-accent: #efe9e2;
   --color-mus-green: #d0eb0a;
-  --color-mus-dark: #1A1A1A;
-  --color-mus-light: #F8FAFC;
+  --color-mus-dark: #1a1a1a;
+  --color-mus-light: #f8fafc;
 
-  --shadow-card: rgba(0, 0, 0, 0.16)_0px_10px_36px_0px, rgba(0, 0, 0, 0.06)_0px_0px_0px_1px;
-  --shadow-details: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --shadow-mus-header: 0 5px 15px rgba(0, 0, 0, 0.35);
+  --shadow-phone-hero: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
-  --animate-float: moveUpDown 2s ease-in-out infinite;
-  --animate-float-slow: moveUpDown 4s ease-in-out infinite;
-  --animate-diagonal: diagonalUpDown 3s infinite alternate;
+  --animate-move-up-down-fast: moveUpDown 2s ease-in-out infinite;
+  --animate-move-up-down: moveUpDown 4s ease-in-out infinite;
   --animate-blink-slow: blink 2s ease-in-out infinite;
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-spin: spin 20s linear infinite;
-  --animate-spin-fast: spinFast 5s linear infinite;
   --animate-move-and-spin: moveAndSpin 10s ease-in-out infinite;
   --animate-move-and-spin-reverse: moveAndSpinReverse 10s ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle 2s ease-in-out infinite;
-
-  @keyframes pulse-subtle {
-
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0.7;
-    }
-  }
-
-  @keyframes slide-in {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+  --animate-spin: spin 20s linear infinite;
 
   @keyframes moveUpDown {
     0% {
@@ -62,18 +34,6 @@
 
     100% {
       transform: translateY(0);
-    }
-  }
-
-  @keyframes diagonalUpDown {
-    0% {
-      transform: translate(-50%, -50%);
-      /* centralizada */
-    }
-
-    100% {
-      transform: translate(calc(-50% + 20px), calc(-50% - 20px));
-      /* sobe para a diagonal */
     }
   }
 
@@ -91,38 +51,6 @@
     100% {
       opacity: 1;
       /* Visível no final */
-    }
-  }
-
-  @keyframes pulse {
-
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: .5;
-    }
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes spinFast {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
     }
   }
 
@@ -159,39 +87,45 @@
   }
 }
 
-/* COMPONENTES */
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* @layer components */
 @layer components {
   .btn {
-    @apply px-5 py-4 font-medium rounded-2xl text-center text-[1.6em] text-mus-black border-2 border-mus-orange transition-all duration-300
+    @apply text-mus-black border-mus-orange rounded-4xl border-2 px-5 py-5 text-center text-[1.6em] font-medium transition-all duration-300;
   }
 
-  .phoneComponent01::before {
-    content: "";
-    width: 2rem;
-    height: 2rem;
-    background-color: black;
-    border-radius: 50%;
+  /* Hero Section */
+
+  .hero-section::before {
+    content: '';
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgba(0, 0, 0, 0.16);
     position: absolute;
-    top: 0.5rem;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 9;
   }
 
-  .phoneComponent02 {
-    content: "";
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 0.7rem;
-    left: 50%;
-    transform: translate(-50%, 100%);
+  @media (min-width: 1024px) {
+    .hero-section::before {
+      width: 50%;
+    }
   }
 
   .phoneButton::before,
   .phoneButton::after {
-    content: "";
+    content: '';
     width: 1rem;
     background-color: black;
     position: absolute;
@@ -208,60 +142,44 @@
     top: 20rem;
   }
 
-  .heroSection::before {
-    content: "";
-    width: 50%;
-    height: 0.1rem;
-    background-color: rgba(0, 0, 0, 0.16);
+  .phoneComponent01 {
+    width: 2rem;
+    height: 2rem;
+    background-color: black;
+    border-radius: 50%;
     position: absolute;
-    bottom: 0;
+    top: 0.5rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9;
   }
 
-  .section-style {
-    @apply w-full px-4 pt-40 pb-20 flex flex-col
+  .phoneComponent02 {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.7rem;
+    left: 50%;
+    transform: translate(-50%, 100%);
+  }
+
+  /* How It Works Section */
+  .coin-style {
+    @apply flex h-12 w-18 items-center overflow-hidden border-black/8 text-[2em];
   }
 }
 
 @layer utilities {
   .flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @apply flex items-center justify-center;
   }
 
-  .flex-center-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
+  /* shadow for How It Works section cards */
   .shadow-card {
-    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  }
-
-  .shadow-card-sm {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  }
-
-  .bgd-gradient {
-    background: #FFFFFF;
-    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(243, 244, 246, 1) 10%, rgba(243, 244, 246, 1) 90%, rgba(255, 255, 255, 1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(243, 244, 246, 1) 10%, rgba(243, 244, 246, 1) 90%, rgba(255, 255, 255, 1) 100%);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(243, 244, 246, 1) 10%, rgba(243, 244, 246, 1) 90%, rgba(255, 255, 255, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFFFFF", endColorstr="#FFFFFF", GradientType=0);
-  }
-
-  .bgd-image {
-    background-image: url("/images/background/imgBGD_02.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    box-shadow:
+      rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
 
   /* TABLET-ONLY VARIANT (768–1024px) */
@@ -271,61 +189,36 @@
     }
   }
 
-  /* DESKTOP-ONLY VARIANT (1024px) */
-  .desktop-only\:hover {
-    @media (min-width: 1024px) {
-      &:hover {
-        @apply bg-mus-orange text-white
-      }
+  /* border effect */
+  .fancy-border {
+    position: relative;
+  }
+  .fancy-border::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 120, 0, 0.5),
+      rgba(255, 120, 0, 1),
+      rgba(255, 120, 0, 0.5),
+      transparent
+    );
+    animation: pulseBorder 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseBorder {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
     }
   }
-}
-
-/* Animações customizadas */
-.animate-slide-in {
-  animation: slide-in 0.6s ease-out forwards;
-}
-
-.search-glow {
-  box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
-  animation: search-pulse 2s infinite;
-}
-
-@keyframes search-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
-  }
-
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 107, 0, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 107, 0, 0);
-  }
-}
-
-/* Efeito de digitação */
-.typewriter-cursor::after {
-  content: '|';
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 62.5%;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
 }
